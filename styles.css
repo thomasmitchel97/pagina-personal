@@ -1,0 +1,287 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', monospace;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Fondo espacial animado */
+        .space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000428 0%, #004e92 50%, #000428 100%);
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Header con título espacial */
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.3"/><circle cx="80" cy="30" r="0.5" fill="white" opacity="0.5"/><circle cx="40" cy="60" r="0.8" fill="white" opacity="0.4"/><circle cx="70" cy="80" r="1.2" fill="white" opacity="0.6"/><circle cx="10" cy="80" r="0.6" fill="white" opacity="0.3"/><circle cx="90" cy="10" r="0.4" fill="white" opacity="0.7"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(100px); }
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 900;
+            text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navegación con botones cohete */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .rocket-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            color: white;
+            font-family: 'Orbitron', monospace;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .rocket-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+        }
+
+        .rocket-btn.active {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .rocket-btn::before {
+            content: '🚀';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .rocket-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .rocket-btn:hover::after {
+            left: 100%;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            display: none;
+            background: rgba(0, 20, 40, 0.8);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .section.active {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section h2 {
+            color: #00ffff;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 0 0 15px #00ffff;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .experience-item {
+            background: rgba(255, 107, 107, 0.1);
+            border-left: 4px solid #ff6b6b;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: translateX(10px);
+        }
+
+        .experience-item h3 {
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 128, 255, 0.1));
+            border: 1px solid #00ffff;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .interest-card {
+            background: linear-gradient(135deg, #ff6b6b, #ffa726);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .interest-card:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .interest-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Efectos visuales adicionales */
+        .glow-text {
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .pixel-border {
+            border: 3px solid #00ffff;
+            border-image: url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m0 0h8v8h-8zm8 8h8v8h-8zm0-8h8v8h-8z' fill='%2300ffff'/%3e%3c/svg%3e") 3;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                gap: 1rem;
+            }
+            
+            .rocket-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+        }
