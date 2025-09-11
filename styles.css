@@ -1,3 +1,217 @@
+/* From Uiverse.io by im_6093 */
+.wrapper {
+    overflow: hidden;
+    padding: 4px;
+}
+.pixelated-button {
+    --hue: 190;
+    --px-size: 3px;
+    background-color: hsl(var(--hue), 40%, 10%);
+    color: white;
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: "Departure Mono", monospace;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 3rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    height: 3rem;
+    padding: 0 1.5rem;
+    user-select: none;
+    touch-action: manipulation;
+    position: relative;
+    image-rendering: pixelated;
+    transition:
+        background-color 0.3s ease,
+        transform 0.2s ease,
+        text-shadow 0.3s ease;
+    animation: pixelated-button-flickerGlow 2.5s infinite alternate;
+}
+.pixelated-button::before {
+    content: "";
+    position: absolute;
+    background-color: inherit;
+    top: var(--px-size);
+    bottom: var(--px-size);
+    left: calc(var(--px-size) * -1);
+    right: calc(var(--px-size) * -1);
+    z-index: -2;
+    image-rendering: pixelated;
+    transition: background-color 0.3s ease;
+}
+.pixelated-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        hsla(var(--hue), 80%, 60%, 0.2),
+        transparent
+    );
+    animation: pixelated-button-scanSweep 3s linear infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+.pixelated-button:hover {
+    transform: translateY(-2px);
+    background-color: hsl(var(--hue), 60%, 15%);
+    text-shadow: 0 0 10px hsl(0, 0%, 90%);
+    animation: pixelated-button-flickerGlow 2.5s infinite alternate;
+}
+.pixelated-button:hover::before {
+    background-color: hsl(var(--hue), 60%, 15%);
+}
+.pixelated-button span {
+    position: relative;
+    z-index: 2;
+}
+.pixelated-button:hover span {
+    will-change: transform;
+    display: inline-block;
+    image-rendering: pixelated;
+}
+.pixelated-button:active {
+    transform: translateY(1px);
+    animation: none;
+}
+.pixelated-button:active span {
+    animation: none;
+}
+.pixelated-button span::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.03) 3px
+    );
+    animation: pixelated-button-scanLines 0.2s infinite linear;
+    image-rendering: pixelated;
+    z-index: 1;
+}
+@keyframes pixelated-button-flickerGlow {
+    0%,
+    100% {
+        box-shadow: 0 0 4px hsl(var(--hue), 60%, 30%);
+    }
+    50% {
+        box-shadow: 0 0 6px hsl(var(--hue), 60%, 50%);
+    }
+}
+@keyframes pixelated-button-scanSweep {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+@keyframes pixelated-button-scanLines {
+    0% {
+        background-position-y: 0;
+    }
+    100% {
+        background-position-y: 3px;
+    }
+}
+/* From Uiverse.io by PriyanshuGupta28 */
+.ai-matrix-loader {
+    width: 120px;
+    height: 160px;
+    margin: 30px auto;
+    position: relative;
+    perspective: 1000px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.digit {
+    color: #00ff88;
+    font-family: monospace;
+    font-size: 18px;
+    text-align: center;
+    text-shadow: 0 0 5px #00ff88;
+    animation:
+        matrix-fall 2s infinite,
+        matrix-flicker 0.5s infinite;
+    opacity: 0;
+}
+
+.digit:nth-child(1) { animation-delay: 0.1s; }
+.digit:nth-child(2) { animation-delay: 0.3s; }
+.digit:nth-child(3) { animation-delay: 0.5s; }
+.digit:nth-child(4) { animation-delay: 0.7s; }
+.digit:nth-child(5) { animation-delay: 0.9s; }
+.digit:nth-child(6) { animation-delay: 1.1s; }
+.digit:nth-child(7) { animation-delay: 1.3s; }
+.digit:nth-child(8) { animation-delay: 1.5s; }
+
+.glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 136, 0.1) 0%,
+        transparent 70%
+    );
+    animation: matrix-pulse 2s infinite;
+}
+
+@keyframes matrix-fall {
+    0% {
+        transform: translateY(-50px) rotateX(90deg);
+        opacity: 0;
+    }
+    20%,
+    80% {
+        transform: translateY(0) rotateX(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(50px) rotateX(-90deg);
+        opacity: 0;
+    }
+}
+
+@keyframes matrix-flicker {
+    0%,
+    19%,
+    21%,
+    100% {
+        opacity: 0.8;
+    }
+    20% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes matrix-pulse {
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
  * {
             margin: 0;
             padding: 0;

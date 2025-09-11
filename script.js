@@ -38,13 +38,34 @@
 
         // Inicializar la página
         document.addEventListener('DOMContentLoaded', function() {
+                        // Evento para mostrar animación Matrix al hacer clic en el h3 de Proyectos en Desarrollo
+                        const matrixTitle = document.getElementById('matrix-title');
+                        const matrixAnimationContainer = document.getElementById('matrix-animation-container');
+                        if (matrixTitle && matrixAnimationContainer) {
+                                matrixTitle.addEventListener('click', function() {
+                                        if (!matrixAnimationContainer.querySelector('.ai-matrix-loader')) {
+                                                matrixAnimationContainer.innerHTML = `
+                                                    <div class="ai-matrix-loader">
+                                                        <div class="digit">A</div>
+                                                        <div class="digit">P</div>
+                                                        <div class="digit">A</div>
+                                                        <div class="digit">F</div>
+                                                        <div class="digit">A</div>
+                                                        <div class="digit">M</div>
+                                                        <div class="digit">S</div>
+                                                        <div class="digit">T</div>
+                                                        <div class="glow"></div>
+                                                    </div>
+                                                `;
+                                        }
+                                });
+                        }
             createStars();
             // Evento para mostrar imagen al hacer clic en el h2 de actividades
-            const activitiesTitle = document.getElementById('activities-title');
+            const activitiesBtn = document.getElementById('activities-show-image');
             const activitiesImageContainer = document.getElementById('activities-image-container');
-            if (activitiesTitle && activitiesImageContainer) {
-                activitiesTitle.addEventListener('click', function() {
-                    // Si la imagen ya está, no la agregues de nuevo
+            if (activitiesBtn && activitiesImageContainer) {
+                activitiesBtn.addEventListener('click', function() {
                     if (!activitiesImageContainer.querySelector('img')) {
                         const img = document.createElement('img');
                         img.src = 'caos.jpg';
@@ -58,10 +79,10 @@
             }
 
             // Evento para mostrar imagen al hacer clic en el h3 de proyectos MATLAB
-            const matlabTitle = document.getElementById('matlab-title');
+            const matlabBtn = document.getElementById('matlab-show-image');
             const matlabImageContainer = document.getElementById('matlab-image-container');
-            if (matlabTitle && matlabImageContainer) {
-                matlabTitle.addEventListener('click', function() {
+            if (matlabBtn && matlabImageContainer) {
+                matlabBtn.addEventListener('click', function() {
                     if (!matlabImageContainer.querySelector('img')) {
                         const img = document.createElement('img');
                         img.src = 'caos.jpg';
@@ -79,10 +100,10 @@
             }
 
             // Evento para mostrar imagen al hacer clic en el h3 de Dashboard Financiero
-            const dashboardTitle = document.getElementById('dashboard-title');
+            const dashboardBtn = document.getElementById('dashboard-show-image');
             const dashboardImageContainer = document.getElementById('dashboard-image-container');
-            if (dashboardTitle && dashboardImageContainer) {
-                dashboardTitle.addEventListener('click', function() {
+            if (dashboardBtn && dashboardImageContainer) {
+                dashboardBtn.addEventListener('click', function() {
                     if (!dashboardImageContainer.querySelector('img')) {
                         const img = document.createElement('img');
                         img.src = 'kpis.jpg';
